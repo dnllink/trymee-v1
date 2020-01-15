@@ -1,0 +1,61 @@
+<form ng-submit="save()" novalidate>
+
+	<div class="card-panel teal lighten-2" ng-show="message" ng-bind="message"></div>
+
+	<div ng-show="aq" ng-cloak>
+	
+		<p>Candidato: <span ng-bind="c"></span></p>
+		
+		<div style="margin-top: 40px;">
+			<ul class="pagination" ng-cloak>
+			    <li ng-class="{ 'active': q.n == aq.n }" ng-repeat="q in qs"><a href="" class="waves-effect" ng-click="setaq(q)" ng-bind="q.n"></a></li>
+			</ul>
+		</div>
+	
+	    <div>
+	        <h3>Questão {{aq.n}}</h3>
+	
+	        <label>Enunciado</label>
+	        <p ng-bind="aq.d"></p>
+	    </div>
+	
+	    <br/>
+	
+	    <div ng-show="aq.im">
+	
+	        <img src="{{aq.im}}"></img>
+	
+	    </div>
+
+	    <div ng-if="aq.t == 2">
+
+        	<p>Selecione a resposta correta:</p>
+
+            <div class="input-field" ng-repeat="a in aq.as">
+                <p>
+     				<input type="radio" class="with-gap" id="check+{{a.i}}" ng-model="aq.c" ng-value="a.i"/>
+     				<label for="check+{{a.i}}">{{a.d}}</label>
+   				</p>
+            </div>
+
+	    </div>
+	
+	    <div ng-if="aq.t == 1">
+	    
+	    	<p>Digite sua resposta:</p>
+	        
+	        <div class="input-field">
+	            <p>
+	                <label for="answerTxt" class="active"></label>
+	                <textarea ng-model="aq.a" id="answerTxt" class="materialize-textarea"/>
+	            </p>
+	        </div>
+	        
+	    </div>
+	
+	</div>
+	
+	<div ng-if="qs.length" class="input-field right-align" style="margin-bottom: 30px;">
+		<button class="btn waves-effect waves-light" type="submit">Finalizar</button>
+	</div>
+</form>

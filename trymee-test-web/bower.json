@@ -1,0 +1,25 @@
+{
+  "name": "trymee-test-web",
+  "authors": [
+    "Daniel Bonaldo <dnllink@hotmail.com>"
+  ],
+  "description": "TryMee Test",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
+    "jQuery": "3.1.1",
+    "materialize": "0.97.8",
+    "angular-route": "1.5.8",
+    "angular-resource": "1.5.8"
+  }
+}

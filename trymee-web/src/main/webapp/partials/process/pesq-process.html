@@ -1,0 +1,58 @@
+<h2 class="header" id="process-step1">Processos
+	<span ng-click="startIntro()">
+		<i class="material-icons">help_outline</i>
+	</span>
+</h2>
+
+<form ng-submit="buscar()" ng-intro-options="IntroOptions" ng-intro-method="startIntro">
+
+	 <div class="row" id="process-step2">
+
+	     <div class="col s10 input-field">
+
+	         <input ng-model="description" id="search" type="text" placeholder="busque um processo"/>
+
+	     </div>
+
+	     <div class="col s2 input-field right-align">
+
+	         <button id="searchbtn" class="btn waves-effect waves-light" type="submit"><i class="material-icons left">search</i>Buscar</button>
+	     
+	     </div>
+	
+	 </div>
+
+	 <div class="row right-align">
+	 	<div class="fixed-action-btn horizontal" id="process-step3">
+	 		<a class="btn-floating btn-large waves-effect waves-light red" href="#/cad-process"><i class="material-icons">add</i></a>
+		</div>
+	 </div>
+
+	 <div class="card-panel teal lighten-2" ng-show="message" ng-bind="message"></div>
+    
+	<div ng-repeat="process in processes">
+	    <div class="card blue-grey darken-1">
+	        <div class="card-content white-text">
+	        	<a href="#/summary-process/{{process.id}}">
+	        		<span class="card-title white-text">Processo</span>
+	        		<span ng-show="!process.active" class="badge-tag red">FINALIZADO</span>
+	        	</a>
+	        	<div class="row">
+	        		<div class="col s6">
+	        			<p ng-bind="process.description"></p>
+					</div>
+	        		<div class="col s6">
+	        			<p>Prova: {{process.test.name}}</p>
+	        			<p>Data de início: {{process.startDate | date:'dd/MM/yyyy'}}</p>
+	        			<p ng-show="process.endDate">Data de término: <span class="badge-tag red" ng-bind="process.endDate | date:'dd/MM/yyyy'"></span></p>
+	            	</div>
+	        	</div>            
+		    </div>
+	        <div class="card-action right-align">
+<!-- 	            <a href="#/edit-process/{{process.id}}">EDITAR</a> -->
+                <a href="#/summary-process/{{process.id}}">VISUALIZAR</a>
+	        </div>
+	    </div>
+	</div>
+
+</form>

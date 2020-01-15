@@ -1,0 +1,33 @@
+<h2 class="header">Corrigir Prova</h2>
+
+<div class="card-panel teal lighten-2" ng-show="message" ng-bind="message"></div>
+
+<div ng-cloak>
+
+	<div ng-repeat="a in answers">
+		<strong>Enunciado:</strong>
+		<blockquote ng-bind="a.question.description"></blockquote>
+		<div>
+			<strong>Resposta esperada:</strong>
+			<p ng-bind="a.question.answer"></p>
+		</div>
+		<div>
+			<strong>Resposta do candidato:</strong>
+			<p ng-bind="a.answerText"></p>
+		</div>
+		
+		<p>
+			<input type="radio" class="with-gap" id="checkCorrect+{{a.id}}" ng-model="a.correct" ng-value="true"/>
+			<label for="checkCorrect+{{a.id}}">Correto</label>
+			<input type="radio" class="with-gap" id="checkWrong+{{a.id}}" ng-model="a.correct" ng-value="false"/>
+			<label for="checkWrong+{{a.id}}">Errado</label>
+		</p>
+
+		<hr>
+	</div>
+
+	<div ng-if="answers.length" class="right-align ms10">
+            <button class="btn waves-effect waves-light" type="button" ng-click="save()">Salvar</button>
+    </div>
+
+</div>

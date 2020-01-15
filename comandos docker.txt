@@ -1,0 +1,17 @@
+# criar rede docker
+docker network create --driver bridge tm-network
+
+# subir container do banco de dados
+docker run --name tm-database -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=bonald_admin -e MYSQL_DATABASE=bonald_logic_dsv -e MYSQL_PASSWORD=bonald_admin --network tm-network -d -v  "E:\Repositories\docker-database\trymee:/var/lib/mysql" mysql:5.7
+
+# buildar projeto api
+mvn clean package -DskipTests
+
+# buildar imagem do projeto api
+docker build -f .\Dockerfile -t bonaldo/tm-backoffice-api .
+
+# subir container da api
+docker run --name tm-api --network tm-network -d -p 8080:8080 bonaldo/tm-backoffice-api
+
+# subir container do webapp
+docker run -d -p 8081:80 -v "E:\Repositories\trymee\trymee-backoffice-web\dist\:/usr/local/apache2/htdocs/backoffice" httpd

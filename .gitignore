@@ -1,0 +1,4 @@
+/target
+/build
+/trymee-web/src/main/webapp/vendor/*
+/trymee-test-web/src/main/webapp/vendor/*

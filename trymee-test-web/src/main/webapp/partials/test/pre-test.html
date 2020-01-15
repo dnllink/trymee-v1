@@ -1,0 +1,122 @@
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $('.collapsible').collapsible();
+
+    });
+
+</script>
+
+<div>
+
+    <form name="form" ng-submit="save()" novalidate ng-cloak>
+
+        <h4>Cadastro</h4>
+        
+        <div class="card-panel teal lighten-2" ng-show="message" ng-bind="message"></div>
+
+        <div class="ms30">
+
+	        <div class="input-field">
+	            <input ng-model="test.name" id="txtName" type="text"></input>
+	            <label for="txtName">Nome do Prova</label>
+	        </div>
+	
+	        <div class="input-field">
+	            <textarea ng-model="test.description" id="txtDescription" class="materialize-textarea"></textarea>
+	            <label for="txtDescription">Descrição da Prova</label>
+	        </div>
+	
+	        <div>
+	           	<label for="selNivel">Nível</label>
+	            <select class="browser-default" id="selNivel" ng-model="test.level.id" ng-options="level.id as level.description for level in levels" required>
+	            	<option value="">Selecione</option>
+	            </select>
+	        </div>
+	
+	        <div class="row">
+	
+	            <div class="col s6">
+	
+	                <ul class="collection with-header">
+	                    <li class="collection-header">
+	                        <input ng-model="searchCategoryText" type="search" placeholder="buscar disponíveis" ng-change="searchCategories()" 
+	                        	ng-model-options="{ debounce: 600 }" ng-keyup="cancel($event)"/>
+	                    </li>
+	                    <li ng-repeat="category in availableCategories" class="collection-item" ng-click="selectCategory(category)"><div ng-bind="category.description"></div></li>
+	                </ul>
+	
+	            </div>
+	
+	            <div class="col s6">
+	
+	                <ul class="collection with-header">
+	                    <li class="collection-header">
+	                        <p>Selecionadas: <span class="badge-tag" ng-bind="selectedCategories.length"></span></p>
+	                    </li>
+	                    <li ng-repeat="category in selectedCategories" class="collection-item" ng-click="removeCategory(category)"><div ng-bind="category.description"></div></li>
+	                </ul>
+	
+	            </div>
+	
+	        </div>
+	
+	        <div>
+	
+	            <ul class="collapsible" data-collapsible="accordion">
+	                <li>
+	                    <div class="collapsible-header">Questões selecionadas: <span class="badge-tag" ng-bind="selectedQuestions.length"></span></div>
+	                    <div class="collapsible-body">
+	                        <ul class="collection">
+	                            <li ng-repeat="question in selectedQuestions" class="collection-item" ng-bind="question.description"></li>
+	                        </ul>
+	                    </div>
+	                </li>
+	            </ul>
+	
+	            <div class="row">
+	
+	                <div class="col s9 input-field">
+	
+	                    <input ng-model="searchQuestionText" id="txtQuestionDescription" type="search" placeholder="busque uma questão"/>
+	
+	                </div>
+	
+	                <div class="col s3 input-field right-align">
+	
+	                    <button class="btn waves-effect waves-light" type="button" ng-click="searchQuestions()">Buscar</button>
+	
+	                </div>
+	
+	            </div>
+	
+	            <div>
+	
+	                <div class="card blue-grey darken-1" ng-repeat="question in availableQuestions">
+	                    <div class="card-content white-text">
+	                        <strong ng-bind="question.level.description"></strong>
+	                        <br />
+	                        <span ng-bind="question.description"></span>
+	                        <br />
+	                        <span>Categoria: <span class="badge-tag" ng-bind="question.category.description"></span></span>
+	                    </div>
+	                    <div class="card-action right-align">
+	                        <a ng-click="selectQuestion(question)">SELECIONAR</a>
+	                    </div>
+	                </div>
+	
+	            </div>
+
+	        </div>
+
+	        </div>
+
+            <div class="right-align">
+
+                <button class="btn waves-effect waves-light" type="submit">Gravar</button>
+
+            </div>	
+	    </form>
+
+	</div>

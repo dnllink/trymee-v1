@@ -1,0 +1,32 @@
+{
+  "name": "trymee",
+  "authors": [
+    "Daniel Bonaldo <dnllink@hotmail.com>"
+  ],
+  "description": "TryMee",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
+    "jQuery": "3.1.1",
+    "materialize": "0.97.8",
+    "angular-route": "1.5.8",
+    "angular-resource": "1.5.8",
+    "angular-loading-bar": "0.9.0",
+    "angular-animate": "1.5.8",
+    "angularjs-datepicker": "2.1.8",
+    "angular-i18n": "1.6.2",
+    "angular-google-analytics": "^1.1.9",
+    "angular-intro.js": "^3.3.0",
+    "intro.js": "^2.5.0"
+  }
+}

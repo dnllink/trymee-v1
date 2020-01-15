@@ -1,0 +1,96 @@
+<div>
+
+    <form name="form" ng-submit="save()" ng-intro-options="IntroOptions" ng-intro-method="startIntro" novalidate ng-cloak>
+
+        <h4 id="cad-question-step1">Questão
+        	<span ng-click="startIntro()">
+				<i class="material-icons">help_outline</i>
+			</span>
+        </h4>
+        
+        <div class="ms30">
+
+            <div>
+
+                <div class="input-field" id="cad-question-step2">
+                    <textarea ng-model="question.description" id="txtEnunciado" class="materialize-textarea" required></textarea>
+                    <label class="active" for="txtEnunciado">Enunciado</label>
+                </div>
+
+                
+                <div id="cad-question-step3">
+                	<label for="selTipo">Tipo</label>
+                    <select class="browser-default" id="selTipo" ng-model="question.type" ng-options="tipo.value as tipo.name for tipo in tipos" required>
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+                <div id="cad-question-step4">
+                	<label for="selNivel">Nível</label>
+                    <select class="browser-default" id="selNivel" ng-model="question.level.id" ng-options="level.id as level.description for level in levels" required>
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+                <div id="cad-question-step5">
+                	<label for="selCategoria">Categoria</label>
+                    <select class="browser-default" id="selCategoria" ng-model="question.category.id" ng-options="category.id as category.description for category in categories" required>
+                        <option value="">Selecione</option>
+                    </select>
+                </div>                        
+
+            </div>
+
+            <div ng-show="question.type == 'MULTIPLA_ESCOLHA'">
+
+                <div class="ms10" id="cad-question-step6">
+                    <button ng-click="addAlternative()" class="btn waves-effect waves-light" type="button">Adicionar</button>
+                </div>
+
+                <div>
+                    <div ng-repeat="alternative in alternatives" class="input-field">
+                        
+                        <fieldset>
+
+                            <div class="input-field">
+                                <textarea ng-model="alternative.description" id="txtAlternative" class="materialize-textarea"></textarea>
+                                <label class="active" for="txtEnunciado">Enunciado</label>
+                            </div>
+
+                            <div class="input-field">
+                                <p>
+                                    <input ng-model="alternative.correct" type="checkbox" id="{{alternative.idCheck}}"/>
+                                    <label class="active" for="{{alternative.idCheck}}">Resposta Correta</label>
+                                </p>
+                            </div>
+                            
+                        </fieldset>
+
+                    </div>
+                </div>
+                
+            </div>
+
+            <div ng-show="question.type == 'DISCURSIVA'">
+
+                <div class="input-field" id="cad-question-step7">
+                    <textarea ng-model="question.answer" id="txtResposta" class="materialize-textarea"></textarea>
+                    <label class="active" for="txtResposta">Resposta</label>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="right-align ms10">
+            <button id="cad-question-step8" class="btn waves-effect waves-light" type="submit">Salvar</button>
+            <button class="btn waves-effect waves-light" type="button" ng-click="clearForm()">Limpar</button>
+        </div>
+
+        <br>
+
+    </form>
+    
+    <script type="text/javascript"></script>
+    
+</div>

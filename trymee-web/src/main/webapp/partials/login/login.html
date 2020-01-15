@@ -1,0 +1,28 @@
+<h2 class="header">Login</h2>
+
+<form ng-submit="login()">
+
+	<div class="input-field">
+    	<input ng-model="data.username" id="txtLogin" type="text" placeholder="digite seu email"/>
+ 		</div>
+
+    <div class="input-field">
+		<input ng-model="data.password" id="txtPass" type="password" placeholder="digite sua senha"/>
+	</div>
+
+	<div class="input-field">
+		<button class="btn waves-effect waves-light" type="submit">Entrar</button>
+	</div>
+	
+	<div class="card-panel teal lighten-2" ng-show="message" ng-bind="message"></div>
+
+</form>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('.material-tooltip').remove();
+		$('.tooltipped').tooltip({delay: 50});
+	});
+      
+</script>

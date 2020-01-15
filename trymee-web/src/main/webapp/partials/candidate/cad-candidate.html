@@ -1,0 +1,41 @@
+<div>
+
+    <form name="form" ng-submit="save()" ng-intro-options="IntroOptions" ng-intro-method="startIntro" ng-cloak>
+
+        <h4 id="cad-cand-step1">Candidato
+        	<span ng-click="startIntro()">
+				<i class="material-icons">help_outline</i>
+			</span>
+        </h4>
+        
+        <div class="ms30">
+        
+        	<div class="input-field" id="cad-cand-step2">
+                <input type="text" ng-model="candidate.name" id="txtName" required></input>
+                <label class="active" for="txtName">Nome</label>
+            </div>
+            
+            <div class="input-field" id="cad-cand-step3">
+                <input type="email" ng-model="candidate.email" id="txtEmail" required></input>
+                <label class="active" for="txtEmail">E-mail</label>
+            </div>
+            
+		</div>
+
+        <div class="right-align ms10">
+            <button id="cad-cand-step4" class="btn waves-effect waves-light" type="submit">Salvar</button>
+            <button class="btn waves-effect waves-light" type="button" ng-click="clearForm()">Limpar</button>
+        </div>
+
+    </form>
+    
+</div>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('.material-tooltip').remove();
+		$('.tooltipped').tooltip({delay: 50});
+	});
+      
+</script>

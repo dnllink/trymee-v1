@@ -1,0 +1,155 @@
+<!doctype html>
+<html ng-app="tm">
+
+    <head>
+
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/2502favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>TRYMEE</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		
+        <link rel="stylesheet" href="vendor/materialize/dist/css/materialize.min.css">
+        <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.min.css" type="text/css" media="all"/>
+        <link rel="stylesheet" href="vendor/angularjs-datepicker/dist/angular-datepicker.min.css" type="text/css" media="all"/>
+        <link rel="stylesheet" href="vendor/intro.js/minified/introjs.min.css">
+        
+		<!-- CSS TRYMEE -->
+		<!-- build:css css/index.min.css -->
+        <link rel="stylesheet" href="css/style.css">
+		<!-- endbuild -->
+
+    </head>
+
+    <body ng-controller="AppController">
+        
+        <header>
+            
+            <nav class="teal lighten-1" role="navigation">
+
+                <div class="nav-wrapper container">
+
+					<a id="logo-container" href="#/" class="brand-logo">
+  						<img src="assets/images/tie-icon-new.jpg" class="logo-tm">
+  						<span style="vertical-align: top;">Trymee</span>
+					</a>
+					<a data-activates="mobile-demo" class="button-collapse right" ng-show="authenticated"><i class="material-icons">menu</i></a>
+
+                    <ul id="nav-mobile" class="right hide-on-med-and-down" ng-show="authenticated">
+                        <li><a href="#/pesq-process">Processos</a></li>
+                        <li><a href="#/pesq-test">Provas</a></li>
+                        <li><a href="#/pesq-question">Questões</a></li>
+                        <li><a href="#/pesq-candidate">Candidatos</a></li>
+                    </ul>
+                    
+                    <ul class="side-nav" id="mobile-demo" ng-show="authenticated">
+                    	<li><a href="#/pesq-process">Processos</a></li>
+                        <li><a href="#/pesq-test">Provas</a></li>
+                        <li><a href="#/pesq-question">Questões</a></li>
+                        <li><a href="#/pesq-candidate">Candidatos</a></li>
+                    </ul>
+
+                </div>
+
+            </nav>
+        
+        </header>
+
+        <main class="container">
+        
+            <ng-view></ng-view>
+
+        </main>
+
+        <footer class="page-footer teal darken-2">
+            
+            <div class="footer-copyright teal darken-2" style="margin-bottom: 20px;">
+                <div class="container">
+                   	<div class="hide-on-med-and-down">
+                    	<a class="waves-effect waves-teal btn-flat btn-large right white-text tooltipped" data-position="top" data-delay="50" data-tooltip="Logout"
+                    		ng-show="authenticated" ng-click="logout()"><i class="material-icons medium">power_settings_new</i></a>
+                    	<a class="waves-effect waves-teal btn-flat btn-large right white-text tooltipped" data-position="top" data-delay="50" data-tooltip="Minhas informações"
+                    		ng-show="authenticated" href="#/edit-user"><i class="material-icons medium">settings</i></a>
+                    </div>
+                    <div class="hide-on-large-only">
+                    	<a class="waves-effect waves-teal btn-flat btn-large left white-text" ng-show="authenticated" ng-click="logout()"><i class="material-icons medium">power_settings_new</i></a>
+                    	<a class="waves-effect waves-teal btn-flat btn-large left white-text" ng-show="authenticated" href="#/edit-user"><i class="material-icons medium">settings</i></a>
+                    </div>
+                    <div>
+                		<span>© 2017 Todos os direitos reservados</span>
+                	</div>
+                </div>
+            </div>
+            
+            <div>
+            	<input id="version-info" type="hidden"/>
+            </div>
+        
+        </footer>
+
+        <!-- LIBS -->
+        <script type="text/javascript" src="vendor/jQuery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="vendor/materialize/dist/js/materialize.min.js"></script>
+        <script type="text/javascript" src="vendor/angular/angular.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-route/angular-route.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-resource/angular-resource.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-animate/angular-animate.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-loading-bar/build/loading-bar.min.js"></script>
+        <script type="text/javascript" src="vendor/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-i18n/angular-locale_pt-br.js"></script>
+        <script type="text/javascript" src="vendor/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
+        
+        <!-- TOUR -->
+        <script type="text/javascript" src="vendor/intro.js/minified/intro.min.js"></script>
+		<script type="text/javascript" src="vendor/angular-intro.js/build/angular-intro.min.js"></script>
+        
+        <!-- JS TRYMEE -->
+		<!-- build:js js/index.min.js -->
+        <script type="text/javascript" src="js/app.js"></script>
+        
+        <!-- CONTROLLERS -->
+        <script type="text/javascript" src="js/controllers/process/PesqProcessController.js"></script>
+        <script type="text/javascript" src="js/controllers/process/CadProcessController.js"></script>
+        <script type="text/javascript" src="js/controllers/process/SummaryProcessController.js"></script>
+        <script type="text/javascript" src="js/controllers/process/CorrectTestController.js"></script>
+        <script type="text/javascript" src="js/controllers/question/PesqQuestionController.js"></script>
+        <script type="text/javascript" src="js/controllers/question/CadQuestionController.js"></script>
+        <script type="text/javascript" src="js/controllers/test/PesqTestController.js"></script>
+        <script type="text/javascript" src="js/controllers/test/CadTestController.js"></script>
+        <script type="text/javascript" src="js/controllers/candidate/PesqCandidateController.js"></script>
+        <script type="text/javascript" src="js/controllers/candidate/CadCandidateController.js"></script>
+        <script type="text/javascript" src="js/controllers/user/CadUserController.js"></script>
+        <script type="text/javascript" src="js/controllers/AppController.js"></script>
+        <script type="text/javascript" src="js/controllers/LoginController.js"></script>
+
+        <!-- SERVICES -->
+        <script type="text/javascript" src="js/services/QuestionService.js"></script>
+        <script type="text/javascript" src="js/services/ProcessService.js"></script>
+        <script type="text/javascript" src="js/services/TestService.js"></script>
+        <script type="text/javascript" src="js/services/LevelService.js"></script>
+        <script type="text/javascript" src="js/services/CategoryService.js"></script>
+        <script type="text/javascript" src="js/services/CandidateService.js"></script>
+        <script type="text/javascript" src="js/services/TestGradeService.js"></script>
+        <script type="text/javascript" src="js/services/AnswerService.js"></script>
+        <script type="text/javascript" src="js/services/SubscriptionService.js"></script>
+        <script type="text/javascript" src="js/services/LocationService.js"></script>
+        <script type="text/javascript" src="js/services/AuthService.js"></script>
+        
+        <script type="text/javascript" src="js/Utils.js"></script>
+        <script type="text/javascript" src="js/version-info.js"></script>
+		<!-- endbuild -->
+        
+		<script type="text/javascript">
+			
+			$(document).ready(function(){
+				$('.material-tooltip').remove();
+				$('.tooltipped').tooltip({delay: 50});
+				$(".button-collapse").sideNav();
+			});
+			
+		</script>
+		
+    </body>
+
+</html>

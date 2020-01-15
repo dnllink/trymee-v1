@@ -1,0 +1,255 @@
+<h2 class="header" >Processo Seletivo 
+	<span ng-show="!process.active" class="tooltipped left" data-position="bottom" data-delay="50" data-tooltip="Processo já finalizado">
+		<i class="material-icons red-text medium">error_outline</i>
+	</span>
+	<span ng-click="showIntro()">
+		<i class="small material-icons">help_outline</i>
+	</span>
+</h2>
+
+<div ng-cloak ng-intro-autorefresh="true">
+
+	<p>
+		<span ng-bind="process.description"></span>
+	</p>
+
+	<div class="right-align">
+		<div id="summary-step5" class="fixed-action-btn click-to-toggle">
+	    	<a class="btn-floating btn-large red">
+	      		<i class="material-icons">menu</i>
+	    	</a>
+	    	<ul>
+	      		<li ng-show="!process.active">
+	      			<a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Reativar processo" ng-click="activateProcess()">
+	      				<i class="material-icons">replay</i>
+	      			</a>
+	      		</li>
+	      		<li ng-show="process.active">
+	      			<a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Finalizar processo" ng-click="finalizeProcess()">
+	      				<i class="material-icons">done</i>
+	      			</a>
+	      		</li>
+	      		<li ng-show="process.active">
+	      			<a class="btn-floating teal accent-4 tooltipped" data-position="left" data-delay="50" data-tooltip="Enviar links" ng-click="sendLinks(false)">
+	      				<i class="material-icons">send</i>
+	      			</a>
+	      		</li>
+	      		<li ng-show="process.active">
+	      			<a class="btn-floating teal accent-4 tooltipped" data-position="left" data-delay="50" data-tooltip="Novo candidato" href="#/cad-candidate?process={{processId}}">
+	      				<i class="material-icons">perm_identity</i>
+	      			</a>
+	      		</li>
+	      		<li ng-show="!process.idTest && process.active">
+	      			<a class="btn-floating teal accent-4 tooltipped" data-position="left" data-delay="50" data-tooltip="Nova prova" href="#/cad-test?process={{processId}}">
+	      				<i class="material-icons">description</i>
+	      			</a>
+	      		</li>
+	       		<li ng-show="process.active">
+	      			<a class="btn-floating teal accent-4 tooltipped" data-position="left" data-delay="50" data-tooltip="Editar processo" href="#/edit-process/{{processId}}">
+	      				<i class="material-icons">mode_edit</i>
+	      			</a>
+	      		</li>
+	    	</ul>
+	  	</div>
+	</div>
+
+	<div id="summary-step1">
+
+        <div class="row ms30">
+            <div class="col s4">
+                <div class="row teal lighten-2 card-process-tm">
+                    <div class="col s6 center-align icon-side-card-tm" >
+                        <a class="tooltipped" data-position="bottom" data-delay="100" data-tooltip="Quantidade de candidatos no processo">
+                            <i class="material-icons large icon-card-tm white-text">perm_identity</i>
+                        </a>
+                    </div>
+                    <div class="col s6 center-align text-side-card-tm">
+                        <h5 class="text-card-value-tm" ng-bind="process.qtCandidates || 0"></h5>
+                        <p class="text-card-desc-tm">candidatos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="row teal lighten-2 card-process-tm">
+                    <div class="col s6 center-align icon-side-card-tm tooltipped" data-position="bottom" data-delay="100" data-tooltip="Quantidade de provas já enviadas">
+                        <i class="material-icons large icon-card-tm">email</i>
+                    </div>
+                    <div class="col s6 center-align text-side-card-tm">
+                        <h5 class="text-card-value-tm" ng-bind="process.qtSent || 0"></h5>
+                        <p class="text-card-desc-tm">enviadas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="row teal lighten-2 card-process-tm">
+                    <div class="col s6 center-align icon-side-card-tm tooltipped" data-position="bottom" data-delay="100" data-tooltip="Quantidade de provas já respondidas por candidatos">
+                        <i class="material-icons large icon-card-tm">done</i>
+                    </div>
+                    <div class="col s6 center-align text-side-card-tm">
+                        <h5 class="text-card-value-tm" ng-bind="process.qtAnswered || 0"></h5>
+                        <p class="text-card-desc-tm">respondidas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s4">
+                <div class="row teal lighten-2 card-process-tm">
+                    <div class="col s6 center-align icon-side-card-tm tooltipped" data-position="bottom" data-delay="100" data-tooltip="Quantidade de provas pendentes de resposta dos candidatos">
+                        <i class="material-icons large icon-card-tm">schedule</i>
+                    </div>
+                    <div class="col s6 center-align text-side-card-tm">
+                        <h5 class="text-card-value-tm" ng-bind="process.qtPending || 0"></h5>
+                        <p class="text-card-desc-tm">pendentes</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="row teal lighten-2 card-process-tm">
+                    <div class="col s6 center-align icon-side-card-tm tooltipped" data-position="bottom" data-delay="100" data-tooltip="Quantidade de provas já respondidas e totalmente corrigidas">
+                        <i class="material-icons large icon-card-tm">done_all</i>
+                    </div>
+                    <div class="col s6 center-align text-side-card-tm">
+                        <h5 class="text-card-value-tm" ng-bind="process.qtCorrected || 0"></h5>
+                        <p class="text-card-desc-tm">corrigidas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="row teal lighten-2 card-process-tm">
+                    <div class="col s6 center-align icon-side-card-tm tooltipped" data-position="bottom" data-delay="100" data-tooltip="Nota média dos candidatos com relação as provas já respondidas">
+                        <i class="material-icons large icon-card-tm">equalizer</i>
+                    </div>
+                    <div class="col s6 center-align text-side-card-tm">
+                        <h5 class="text-card-value-tm">{{process.averageRating || 0 | number:1}}</h5>
+                        <p class="text-card-desc-tm">nota média</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+	
+	</div>
+
+  	<nav class="nav-extended teal lighten-2">
+    	<div class="nav-content">
+      		<ul class="tabs tabs-transparent">
+        		<li id="summary-step2" class="tab" ng-click="getGrades()"><a ng-class="{'active': tab==1}" href="">Desempenho</a></li>
+        		<li id="summary-step3" class="tab" ng-click="getTest()"><a ng-class="{'active': tab==2}"href="">Prova</a></li>
+        		<li id="summary-step4" class="tab" ng-click="getCandidates()"><a ng-class="{'active': tab==3}"href="">Candidatos</a></li>
+      		</ul>
+    	</div>
+  	</nav>
+  	
+  	<div>
+  	
+	  	<div ng-if="tab==1">
+	
+			<table class="bordered highlight">
+				<thead>
+					<tr>
+						<th data-field="candidate">Candidato</th>
+		              	<th class="center-align" data-field="rating">Nota</th>
+		              	<th class="right-align" data-field="partial">Correção Parcial</th>
+		          	</tr>
+		        </thead>
+		
+		        <tbody>
+		        	<tr ng-repeat="tg in testGrades">
+		            	<td ng-bind="tg.candidate.name"></td>
+		            	<td class="center-align" ng-bind="tg.rating | number:2"></td>
+		            	<td class="right-align"><a href="#/correct-test?idCandidate={{tg.candidate.id}}&idProcess={{tg.process.id}}" ng-if="tg.partial">Sim</a><span ng-if="!tg.partial">Não</span></td>
+		          	</tr>
+		        </tbody>
+			</table>
+	
+	  	</div>
+	  	
+	  	<div class="ms10" ng-if="tab==2">
+	  	
+	  		<div ng-repeat="q in test.questions">
+			  	<strong>Enunciado:</strong>
+			  	<blockquote ng-bind="q.description"></blockquote>
+			  	<div ng-if="q.type=='MULTIPLA_ESCOLHA'">
+			  		<strong>Alternativas:</strong>
+			  		<p ng-class="{'teal-text': a.correct, 'text-darken-1': a.correct}" ng-repeat="a in q.alternatives"> {{a.description}} <span ng-if="a.correct" class="badge-tag">Correta</span></p>
+			  	</div>
+			  	<div ng-if="q.type=='DISCURSIVA'">
+					<strong>Resposta:</strong>
+			  		<p ng-bind="q.answer"></p>
+			  	</div>
+			  	<hr>
+		  	</div>
+
+	  	</div>
+
+		<div ng-if="tab==3">
+	
+			<table class="bordered highlight">
+				<thead>
+					<tr>
+						<th data-field="candidate">Nome</th>
+		              	<th data-field="rating">Email</th>
+		              	<th data-field="link">Status</th>
+		              	<th data-field="action"></th>
+		          	</tr>
+		        </thead>
+		
+		        <tbody>
+		        	<tr ng-repeat="c in candidates">
+		            	<td ng-bind="c.name"></td>
+		            	<td ng-bind="c.email"></td>
+		            	<td>
+		            		<a ng-show="c.link == null" class="red-text">
+		            			<span>Envio pendente</span>
+		            			<i class="material-icons left">error</i>
+		            		</a>
+		            		<a ng-show="c.link != null && c.link" class="black-text">
+		            			<span>Aguardando resposta</span>
+		            			<i class="material-icons left">schedule</i>
+		            			<button ng-click="openLinkModal(c)" class="btn waves-effect waves-light right" type="button">Ver link
+    								<i class="material-icons right">info_outline</i>
+  								</button>
+		            		</a>
+		            		<a ng-show="c.link != null && !c.link" class="green-text">
+		            			<span>Prova respondida</span>
+		            			<i class="material-icons left">done</i>
+		            		</a>
+		            	</td>
+		            	<td class="right-align">
+		            		<button class="btn waves-effect waves-light uo-send-class" type="button" ng-hide="c.link != null && !c.link" ng-click="sendLinks(c.id)">Enviar link
+								<i class="material-icons right">send</i>
+							</button>
+						</td>
+					</tr>
+		        </tbody>
+			</table>
+	
+	  	</div>
+  	
+  	</div>
+
+</div>
+
+<!-- Modal Structure -->
+<div id="link-modal" class="modal">
+	<div class="modal-content">
+		<h4>Detalhes</h4>
+		<p>Candidato: <span ng-bind="modal.name"></span></p>
+		<p>Você também pode copiar o link abaixo e enviar para seu candidato por qualquer outro meio:</p>
+		<p ng-bind="modal.linkUrl"></p>
+	</div>
+	<div class="modal-footer">
+		<a href=""
+			class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('.material-tooltip').remove();
+		$('.tooltipped').tooltip({delay: 50});
+	});
+	
+</script>

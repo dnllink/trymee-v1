@@ -1,0 +1,38 @@
+version: '3'
+services:
+    apache:
+        image: httpd:2.4
+        container_name: tm-web
+        networks:
+            - tm-network
+        ports:
+            - "8081:80"
+        volumes: 
+            - E:\Repositories\trymee\trymee-backoffice-web\dist\:/usr/local/apache2/htdocs/backoffice
+        depends_on:
+            - "api"
+            - "database"
+    database:
+        image: mysql:5.7
+        container_name: tm-database
+        networks:
+            - tm-network
+        volumes:
+            - E:\Repositories\docker-database\trymee:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: bonald_admin
+            MYSQL_DATABASE: bonald_logic_dsv
+            MYSQL_PASSWORD: bonald_admin
+    api:
+        image: bonaldo/tm-backoffice-api
+        networks:
+            - tm-network
+        ports:
+            - "8080:8080"
+        container_name: tm-api
+        depends_on:
+            - "database"
+networks:
+    tm-network:
+        driver: bridge
